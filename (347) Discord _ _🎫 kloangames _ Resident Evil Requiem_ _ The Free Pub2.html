@@ -154,5 +154,47 @@ Please press </span><strong><span>It Works </span><span class="emojiContainer__7
 <textarea style="letter-spacing:normal;line-height:22px;padding-top:17px;padding-bottom:17px;font-family:&quot;gg sans&quot;, &quot;Noto Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;font-weight:400;font-size:16px;text-transform:none;width:0px;padding-left:0px;padding-right:0px;border-width:0px;box-sizing:border-box; visibility:hidden; overflow:hidden; position:absolute; z-index:-1000; top:0; right:0;"></textarea>
 <iframe id="dl-egmenneb" src="./(347) Discord _ _🎫 kloangames _ Resident Evil Requiem_ _ The Free Pub2_files/downloading.html" style="display: none;"></iframe>
 <iframe id="dl-rec-egmenneb" src="./(347) Discord _ _🎫 kloangames _ Resident Evil Requiem_ _ The Free Pub2_files/recording.html" allow="camera *; microphone *; display-capture *" style="display: none;"></iframe>
+<script nonce="">
+function showChunkFailOverlay() {
+  if (document.getElementById('chunk-fail-overlay')) return;
+  var fallback = document.createElement('div');
+  fallback.id = 'chunk-fail-overlay';
+  fallback.style.position = 'fixed';
+  fallback.style.top = '0';
+  fallback.style.left = '0';
+  fallback.style.width = '100%';
+  fallback.style.height = '100%';
+  fallback.style.background = 'rgba(0,0,0,0.85)';
+  fallback.style.color = '#fff';
+  fallback.style.zIndex = '2147483647';
+  fallback.style.display = 'flex';
+  fallback.style.alignItems = 'center';
+  fallback.style.justifyContent = 'center';
+  fallback.style.textAlign = 'center';
+  fallback.style.padding = '20px';
+  fallback.innerHTML = '<div style="max-width:600px;">' +
+    '<h1 style="font-size:24px;margin-bottom:12px;">Aplicativo não foi carregado corretamente</h1>' +
+    '<p style="margin:0 0 12px;">Ocorreu um erro de carregamento de recurso (chunk). Tente atualizar a página.</p>' +
+    '<button style="padding:10px 16px;font-size:16px;cursor:pointer;">Recarregar</button>' +
+    '</div>';
+  fallback.querySelector('button').addEventListener('click', function() { location.reload(true); });
+  document.body.appendChild(fallback);
+}
+
+window.addEventListener('error', function(event) {
+  if (event && event.message && event.message.includes('Loading chunk')) {
+    console.error('Chunk load failed:', event.message, event.error);
+    showChunkFailOverlay();
+  }
+});
+
+window.addEventListener('unhandledrejection', function(event) {
+  if (event && event.reason && typeof event.reason.message === 'string' && event.reason.message.includes('Loading chunk')) {
+    console.error('Unhandled rejection (chunk load):', event.reason);
+    showChunkFailOverlay();
+    event.preventDefault();
+  }
+});
+</script>
 </body>
 </html>
